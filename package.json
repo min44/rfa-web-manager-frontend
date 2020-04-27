@@ -1,7 +1,7 @@
 {
   "name": "rfa-web-manager-frontend",
   "version": "0.1.0",
-  "description": "Frontend for Web application for Autodesk Revit families generation and management",
+  "description": "Frontend of web application for the generation and management Autodesk Revit families",
   "dependencies": {
     "@material-ui/core": "^4.9.1",
     "@material-ui/icons": "^4.9.1",
