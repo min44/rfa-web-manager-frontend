@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Switch, Route } from "react-router-dom";
-import { MuiThemeProvider, Container } from "@material-ui/core";
+import { MuiThemeProvider } from "@material-ui/core";
 import { responsiveFontSizes } from "@material-ui/core/styles";
 import PrivateRoute from "./components/PrivateRoute";
 import { LoginPage } from "./pages/LoginPage";
@@ -27,7 +27,6 @@ export const App: React.FC = observer(() => {
   return appLoaded ? (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      {/* <ButtonAppBar /> */}
       {isAuthenticated ? <ButtonAppBar /> : <div/> }
       <Switch>
         <PrivateRoute path="/application" component={ApplicationPage} />
