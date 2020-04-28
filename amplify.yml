@@ -4,9 +4,11 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - npm ci --prefix material-ui-dropzone
     build:
       commands:
         - npm run build
+        - npm run build --prefix material-ui-dropzone
   artifacts:
     baseDirectory: build
     files:
