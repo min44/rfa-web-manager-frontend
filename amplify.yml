@@ -4,10 +4,8 @@ frontend:
     preBuild:
       commands:
         - npm ci
-        - npm install --prefix material-ui-dropzone
     build:
       commands:
-        - cd material-ui-dropzone && npm run build
         - npm run build
   artifacts:
     baseDirectory: build
