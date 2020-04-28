@@ -29,14 +29,14 @@ export const App: React.FC = observer(() => {
       <CssBaseline />
       {isAuthenticated ? <ButtonAppBar /> : <div/> }
       <Switch>
-        <PrivateRoute path="/application" component={ApplicationPage} />
-        <PrivateRoute path="/upload" component={UploadPage} />
-        <PrivateRoute path="/profile" component={ProfilePage} />
-        <PrivateRoute path="/admin" component={AdminPage} />
-        <Route path="/start" component={StartPage} />
-        <Route path="/auth/login" component={LoginPage} />
-        <Route path="/signup" component={SignUpPage} />
-        <PrivateRoute path="/" component={HomePage} />
+        <PrivateRoute path="/application" component={ ApplicationPage } />
+        <PrivateRoute path="/upload" component={ UploadPage } />
+        <PrivateRoute path="/profile" component={ ProfilePage } />
+        <PrivateRoute path="/admin" component={ AdminPage } />
+        <Route path="/start" component={ StartPage } />
+        <Route path="/auth/login" component={ LoginPage } />
+        <Route path="/signup" component={ SignUpPage } />
+        <PrivateRoute path="/" component={ HomePage } />
       </Switch>
     </MuiThemeProvider>
   ) : (

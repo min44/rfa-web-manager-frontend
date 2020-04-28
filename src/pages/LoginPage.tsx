@@ -72,7 +72,6 @@ export const LoginPage: React.FC = observer(() => {
             helperText={errors.email.join('\n')}
             variant='outlined'
             margin='normal'
-            required
             fullWidth
             id='email'
             label='Email Address'
@@ -87,7 +86,6 @@ export const LoginPage: React.FC = observer(() => {
             helperText={errors.password.join('\n')}
             variant='outlined'
             margin='normal'
-            required
             fullWidth
             name='password'
             label='Password'

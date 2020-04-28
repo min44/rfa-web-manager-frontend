@@ -7,8 +7,6 @@ import Avatar from "@material-ui/core/Avatar"
 import Alert from "@material-ui/lab/Alert"
 import Button from "@material-ui/core/Button"
 import TextField from "@material-ui/core/TextField"
-import FormControlLabel from "@material-ui/core/FormControlLabel"
-import Checkbox from "@material-ui/core/Checkbox"
 import Link from "@material-ui/core/Link"
 import Grid from "@material-ui/core/Grid"
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
@@ -91,7 +89,6 @@ export const SignUpPage: React.FC = observer(() => {
                 autoComplete="name"
                 name="fullName"
                 variant="outlined"
-                required
                 fullWidth
                 id="fullName"
                 label="Full Name"
@@ -107,7 +104,6 @@ export const SignUpPage: React.FC = observer(() => {
                 autoComplete="nickname"
                 name="displayName"
                 variant="outlined"
-                required
                 fullWidth
                 id="displayName"
                 label="Display Name"
@@ -121,7 +117,6 @@ export const SignUpPage: React.FC = observer(() => {
                 defaultValue={registrationValues.email}
                 onChange={handleEmailChange}
                 variant="outlined"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -136,7 +131,6 @@ export const SignUpPage: React.FC = observer(() => {
                 defaultValue={registrationValues.password}
                 onChange={handlePasswordChange}
                 variant="outlined"
-                required
                 fullWidth
                 name="password"
                 label="Password"
