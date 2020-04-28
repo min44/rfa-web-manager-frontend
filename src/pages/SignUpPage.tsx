@@ -152,7 +152,7 @@ export const SignUpPage: React.FC = observer(() => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/auth/login" variant="body2">
+              <Link href="/auth/login" variant="body1">
                 Already have an account? Sign in
               </Link>
             </Grid>
