@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cd material-ui-dropzone && npm install && npm run build && cd .. && react-scripts build",
+    "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
