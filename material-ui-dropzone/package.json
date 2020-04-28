@@ -54,6 +54,7 @@
     "../node_modules/material-ui-dropzone/dist/"
   ],
   "dependencies": {
+    "@babel/core": "7.9.0",
     "@svgr/rollup": "^2.4.1",
     "babel-core": "6.26.3",
     "babel-eslint": "10.1.0",
