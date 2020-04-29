@@ -7,11 +7,10 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   startpage: {
-    paddingTop: "20px",
-    paddingBottom: "30px",
+    paddingBottom: "20px",
     backgroundColor: "#000",
-    opacity: 0.8,
     textAlign: "center",
+    opacity: "0.7",
   },
 }));
 
@@ -19,16 +18,15 @@ export const StartPage: React.FC = observer(() => {
   const classes = useStyles();
 
   return (
-      <div id="homePageBackground">
-        <div className="homePageBackgroundLogo">
-        <Container className={classes.startpage} maxWidth="sm">
-          <Typography variant="h4">Welcome to BIMGEN</Typography>
-          <Typography variant="subtitle1">This is text to check changes and correct</Typography>
-          <Link variant="body1" href="/auth/login">
-            Go to rfa editor
-          </Link>
-        </Container>
-      </div>
+    <div id="homePageBackground">
+      <Container className={classes.startpage} maxWidth="sm">
+        <Typography variant="h4">Welcome to BIMGEN</Typography>
+        <Typography variant="subtitle1">Coming soon...</Typography>
+        <Link variant="body1" href="/auth/login">
+          RFA web editor
+        </Link>
+      </Container>
+      <div className="homePageBackgroundLogo"></div>
     </div>
   );
 });
