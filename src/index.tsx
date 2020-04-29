@@ -4,8 +4,9 @@ import { App } from "./App";
 import { Provider } from "mobx-react";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import * as serviceWorker from "./serviceWorker";
+// import * as serviceWorker from "./serviceWorker";
 import { stores } from "./stores";
+
 
 ReactDOM.render(
   <Provider {...stores}>
@@ -16,4 +17,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-serviceWorker.unregister()
+// serviceWorker.unregister()
