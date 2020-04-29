@@ -20,14 +20,15 @@ body {
     width: 100%;
     height: 100vh;
     background: url("./img/Image 04.png") 90% 90% no-repeat fixed;
-    background-size: auto 100%;
+    background-size: auto 120%;
     opacity:0.3;
   }
   .homePageBackgroundLogo {
     width: 100%;
     height: 100vh;
-    background: url("./img/BG_Background_Logo.png") 40% 40% no-repeat fixed;
-    background-size: 100%;
+    background: url("./img/BG_Background_Logo.png") 50% 50% no-repeat fixed;
+    background-size: 80%;
+    background-position-x: 40%;
   }
   
   .wrapper {
