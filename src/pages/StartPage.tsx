@@ -18,7 +18,7 @@ export const StartPage: React.FC = observer(() => {
 
   return (
     <div className="homePageBackgroundLogo">
-      <Container className={classes.startpage} component="main" maxWidth="sm">
+      <Container className={classes.startpage} component="main" maxWidth="sm" style={{opacity: "0.8"}}>
         <Typography variant="h4">Welcome to main page Bim Gen LLC</Typography>
         <Typography variant="body1">This is text to chek changes and correct</Typography>
         <Link href="/auth/login">Go to rfa editor</Link>
