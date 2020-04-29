@@ -16,12 +16,11 @@ body {
     
   }
 
-  .homePageBackground {
+  #homePageBackground {
     width: 100%;
     height: 100vh;
-    background: url("./img/Image 04.png") 90% 90% no-repeat fixed;
+    background: url("./img/005.bmp") no-repeat fixed;
     background-size: auto 120%;
-    opacity:0.3;
   }
   .homePageBackgroundLogo {
     width: 100%;

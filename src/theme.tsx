@@ -3,6 +3,9 @@ import { createMuiTheme } from "@material-ui/core/styles";
 export const useTheme = () =>
   createMuiTheme({
     typography: {
+      body1: {
+        fontWeight: 400,
+      },
       fontFamily: [
         "-apple-system",
         "BlinkMacSystemFont",
@@ -15,7 +18,7 @@ export const useTheme = () =>
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
       ].join(","),
-      fontWeightRegular: 300
+      fontWeightRegular: 300,
     },
     palette: {
       type: "dark",
