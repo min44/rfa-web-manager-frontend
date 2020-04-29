@@ -1,19 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Typography } from "@material-ui/core";
-import { DropzoneArea } from "material-ui-dropzone";
-import { makeStyles, ThemeProvider, useTheme } from "@material-ui/core/styles";
+import { Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import SnackAlert from "../components/SnackAlert";
 import { useStores } from "../hooks/strores.hook";
 import { Redirect } from "react-router-dom";
-import Dashboard from "../components/Dashboard";
 import Loader from "../components/Loader";
-import { observable, configure, action, runInAction } from "mobx";
-import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
-import { inherits } from "util";
-import { PropTypes } from "mobx-react";
+import { fromPromise } from "mobx-utils";
+import { DropzoneArea } from "material-ui-dropzone";
+
 
 const useStyles = makeStyles((theme) => ({
   dropzone: {
@@ -41,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 export const UploadPage: React.FC = () => {
   const classes = useStyles();
   const { forgeStore } = useStores();
-  const [files, setFiles] = useState([]);
+  const [filesState, setFilesState] = useState([] as any);
   const [snackIsOpen, setSnackIsOpen] = useState(false);
   const [isUploaded, setIsUploaded] = useState(false);
 
@@ -53,11 +50,11 @@ export const UploadPage: React.FC = () => {
   };
 
   const handleUpload = async () => {
-    if (files.length > 0) {
+    if (filesState.length > 0) {
       const data = new FormData();
-      files.forEach((file) => data.append("files", file));
+      filesState.forEach((file: any) => data.append("files", file));
       fromPromise(forgeStore.uploadFile(data).then(() => setIsUploaded(true)));
-      setFiles([]);
+      setFilesState([]);
     } else {
       setSnackIsOpen(true);
     }
@@ -74,14 +71,14 @@ export const UploadPage: React.FC = () => {
         <div style={{ paddingTop: "30px" }}>
           <div>
             <DropzoneArea
-              dropzoneLabelsStyle={files.length > 0 ? { display: "none" } : {}}
+              dropzoneLabelsStyle={filesState.length > 0 ? { display: "none" } : {}}
               dropzoneClass={classes.dropzone}
               dropzoneParagraphClass={classes.dropzoneParagraph}
               uploadIconClass={classes.uploadIcon}
               dropzoneText={"Drag and drop revit family file here or click"}
               acceptedFiles={[".rfa", ".rvt", "*.*", ".", ".jpg", ".jpeg"]}
               showFileNames={true}
-              onChange={(files) => setFiles(files)}
+              onChange={(files) => setFilesState(files)}
               maxFileSize={10000000}
               filesLimit={6}
             />

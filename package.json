@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Frontend of web application for the generation and management Autodesk Revit families",
   "dependencies": {
-    "@material-ui/core": "^4.9.1",
+    "@material-ui/core": "4.9.12",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.47",
     "@types/jest": "^24.9.1",
@@ -16,7 +16,7 @@
     "clsx": "^1.1.0",
     "core-js": "^3.6.4",
     "eslint-plugin-flowtype": "^4.6.0",
-    "material-ui-dropzone": "^2.4.7",
+    "material-ui-dropzone": "3.0.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",
     "mobx-utils": "^5.5.7",
@@ -30,7 +30,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build:dropzone && react-scripts build",
+    "build:dropzone": "node src/components/Dropzone/copyscript.js",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:5000",
@@ -51,5 +52,16 @@
   },
   "devDependencies": {
     "babel-preset-mobx": "^2.0.0"
-  }
+  },
+  "main": "/src/App.tsx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/min44/rfa-web-manager-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/min44/rfa-web-manager-frontend/issues"
+  },
+  "homepage": "https://github.com/min44/rfa-web-manager-frontend#readme"
 }
