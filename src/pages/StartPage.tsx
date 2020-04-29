@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#000",
     opacity: 0.8,
     textAlign: "center",
-    alignContent: "center"
   },
 }));
 
