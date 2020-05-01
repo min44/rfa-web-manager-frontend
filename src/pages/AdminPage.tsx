@@ -1,6 +1,5 @@
 import React from "react";
 import { observer } from "mobx-react";
-import Dashboard from "../components/Dashboard";
 import { Typography, Container } from "@material-ui/core";
 import { useStores } from "../hooks/strores.hook";
 import { UniTable } from "./tables/UniTable";

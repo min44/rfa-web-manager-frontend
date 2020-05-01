@@ -815,7 +815,7 @@ process.env.NODE_ENV !== "production" ? DropzoneArea.propTypes = {
 
   /** Custom CSS class name for text inside the container. */
   dropzoneLabelsStyle: PropTypes.object,
-  uploadIconClass: PropTypes.object,
+  uploadIconClass: PropTypes.string,
   dropzoneParagraphClass: PropTypes.string,
 
   /** Disable feedback effect when dropping rejected files. */

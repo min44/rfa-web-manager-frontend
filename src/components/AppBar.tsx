@@ -1,12 +1,9 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { Toolbar, IconButton, Menu, MenuItem, Drawer, Divider } from "@material-ui/core";
+import { Toolbar, IconButton, Drawer, Divider } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import Typography from "@material-ui/core/Typography";
 import { Title } from "../components/Title";
-import { MainMenu } from "../components/MainMenu";
 import { mainListItems } from "../components/SideBar";
 import ProfileMenu from "../components/DashboardAppBar/ProfileMenu";
 

@@ -2,7 +2,6 @@ import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
-import Dashboard from "../components/Dashboard";
 import { UniTable } from "./tables/UniTable";
 import { useStores } from "../hooks/strores.hook";
 import { observer } from "mobx-react";
