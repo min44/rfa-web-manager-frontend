@@ -16,19 +16,20 @@ body {
     
   }
 
-  .homePageBackground {
+  #homePageBackground {
     width: 100%;
     height: 100vh;
-    background: url("./img/Image 04.png") 90% 90% no-repeat fixed;
-    background-size: auto 120%;
-    opacity:0.3;
+    background: linear-gradient(to bottom,  rgba(255,255,255,0.3) 0%, rgba(20,20,10,0.7) 70%,  rgba(0,0,0,1) 100%),
+                url("./img/005.png") 50% 50% no-repeat fixed;
+    background-size: auto 110%;
   }
   .homePageBackgroundLogo {
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     background: url("./img/BG_Background_Logo.png") 50% 50% no-repeat fixed;
     background-size: 80%;
     background-position-x: 40%;
+    opacity: 0.4;
   }
   
   .wrapper {
