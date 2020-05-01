@@ -34,7 +34,6 @@
     "build:dropzone": "node src/components/Dropzone/copyscript.js",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -62,6 +61,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/min44/rfa-web-manager-frontend/issues"
-  },
-  "homepage": "https://www.bimgen.org/"
+  }
 }
