@@ -61,7 +61,7 @@ export const UploadPage: React.FC = () => {
   };
 
   return isUploaded ? (
-    <Redirect to="/application" />
+    <Redirect to="/datamanagement" />
   ) : (
     <Container maxWidth="md">
       <CssBaseline />

@@ -18,17 +18,24 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary="Upload" />
     </ListItem>
-    <ListItem button component={NavLink} to="/application">
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Application" />
-    </ListItem>
+
     <ListItem button component={NavLink} to="/admin">
       <ListItemIcon>
         <SecurityIcon />
       </ListItemIcon>
       <ListItemText primary="Admin" />
+    </ListItem>
+    <ListItem button component={NavLink} to="/datamanagement">
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="DataManagement" />
+    </ListItem>
+    <ListItem button component={NavLink} to="/designautomation">
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="DesignAutomation" />
     </ListItem>
   </List>
 );

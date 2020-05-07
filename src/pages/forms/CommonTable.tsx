@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const UniTable = observer((props: any) => {
+export const CommonTable = observer((props: any) => {
   const classes = useStyles();
 
-  const UniTableHead = (props: any) => {
+  const CommonTableHead = (props: any) => {
     return props.headers.map((header: string, index: number) => <TableCell key={index}>{header}</TableCell>);
   };
 
-  const UniTableBody = (props: any) => {
+  const CommonTableBody = (props: any) => {
     const handleDeleteRow = (_id: string) => props.deleteFunction(_id);
     return props.body.map((row: any, index: number) => (
       <TableRow key={index}>
@@ -32,12 +32,12 @@ export const UniTable = observer((props: any) => {
             <DeleteIcon />
           </IconButton>
         </TableCell>
-        <UniTableRows cells={Object.values(row)} />
+        <CommonTableRows cells={Object.values(row)} />
       </TableRow>
     ));
   };
 
-  const UniTableRows = (props: any) => {
+  const CommonTableRows = (props: any) => {
     return props.cells.map((cell: any, index: number) => (
       <TableCell key={index} align="left">
         {cell}
@@ -51,11 +51,11 @@ export const UniTable = observer((props: any) => {
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
-            <UniTableHead headers={Object.keys(props.data[0])} />
+            <CommonTableHead headers={Object.keys(props.data[0])} />
           </TableRow>
         </TableHead>
         <TableBody>
-          <UniTableBody body={props.data} deleteFunction={props.deleteFunction} idkey={props.idkey} />
+          <CommonTableBody body={props.data} deleteFunction={props.deleteFunction} idkey={props.idkey} />
         </TableBody>
       </Table>
     </TableContainer>
