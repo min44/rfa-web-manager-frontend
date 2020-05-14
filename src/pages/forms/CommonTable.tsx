@@ -20,7 +20,10 @@ export const CommonTable = observer((props: any) => {
   const classes = useStyles();
 
   const CommonTableHead = (props: any) => {
-    return props.headers.map((header: string, index: number) => <TableCell key={index}>{header}</TableCell>);
+    // const unnecessary = props.unnecessary;
+    // .filter((header: string) => { return !unnecessary.includes(header) })
+    const headers = props.headers;
+    return headers.map((header: string, index: number) => { return <TableCell key={index}>{header}</TableCell> });
   };
 
   const CommonTableBody = (props: any) => {
@@ -40,7 +43,7 @@ export const CommonTable = observer((props: any) => {
   const CommonTableRows = (props: any) => {
     return props.cells.map((cell: any, index: number) => (
       <TableCell key={index} align="left">
-        {cell}
+        {cell.toString()}
       </TableCell>
     ));
   };

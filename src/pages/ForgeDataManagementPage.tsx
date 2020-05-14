@@ -9,8 +9,9 @@ import { observer } from "mobx-react";
 export const ForgeDataManagementPage: React.FC = observer(() => {
   const { forgeStore } = useStores();
 
+
   return (
-    <Container>
+    <Container style={{marginBottom: "100px"}}>
       <CssBaseline />
       <Typography variant="h5" gutterBottom>
         State: {forgeStore.bucketsState.state === "fulfilled" ? "Loading complete" : forgeStore.bucketsState.state}
@@ -22,6 +23,8 @@ export const ForgeDataManagementPage: React.FC = observer(() => {
       <CommonTable data={forgeStore.buckets} deleteFunction={forgeStore.deleteBucket} idkey={"bucketKey"} />
       <Typography variant="h5">Objects</Typography>
       <CommonTable data={forgeStore.objects} deleteFunction={forgeStore.deleteObject} idkey={"objectKey"} />
+      <Typography variant="h5">Objects</Typography>
+      <CommonTable data={forgeStore.extractionResult} />
     </Container>
   );
 });

@@ -4,7 +4,15 @@ import apiClient from "./apiClient";
 
 configure({ enforceActions: "observed" });
 
+interface signedResourcesFile {
+  fileName: string;
+  rvtFile: string;
+  result: string;
+}
+
 export class ForgeStore {
+
+  //#region @observable
   @observable forgeAppName: string = "Fetching name...";
   @observable forgeAppNameState: IPromiseBasedObservable<void> = fromPromise(this.getforgeAppName());
 
@@ -23,6 +31,11 @@ export class ForgeStore {
   @observable activities: Array<object> = [{ "Fetching data...": "Loading..." }];
   @observable ActivitiesState: IPromiseBasedObservable<void> = fromPromise(this.getActivities());
 
+  @observable signedResourcesData: Array<object> = [];
+
+  @observable extractionResult: Array<object> = [];
+  //#endregion
+
   @action.bound async createNickname(newname: string) {
     console.log("async createNickname");
     await apiClient.post("/api/forge/da/createnickname", { newname });
@@ -38,8 +51,10 @@ export class ForgeStore {
   @action async uploadFile(data: object) {
     console.log("async uploadFile");
     this.uploading = true;
-    await apiClient.post("/api/forge/dm/file/upload", data);
+    const response = await apiClient.post("/api/forge/dm/file/upload", data);
+    runInAction(() => (this.signedResourcesData = response.data.signedResourcesData));
     this.getObjects();
+    this.getFromSingnedResources(response.data.signedResourcesData[0]);
     this.uploading = false;
   }
 
@@ -107,14 +122,15 @@ export class ForgeStore {
     console.log("async getActivities");
     const response = await apiClient.get("/api/forge/da/getactivities");
     runInAction(() => {
-      this.activities = response.data.map((value: string, index: number) => ({
-        index: index + 1,
-        id: value.split(/[.+\s]/)[1],
-        value: value,
-      }))
-      .filter((appBundle: { value: string }) => {
-        return appBundle.value.startsWith("clforgeapp");
-      });
+      this.activities = response.data
+        .map((value: string, index: number) => ({
+          index: index + 1,
+          id: value.split(/[.+\s]/)[1],
+          value: value,
+        }))
+        .filter((appBundle: { value: string }) => {
+          return appBundle.value.startsWith("clforgeapp");
+        });
     });
   }
 
@@ -127,6 +143,12 @@ export class ForgeStore {
   @action.bound async createWorkItem(id: string) {
     console.log("async createWorkItem");
     await apiClient.post("/api/forge/da/createworkitem", { id });
+  }
+
+  @action.bound async getFromSingnedResources(signedResourcesFile: signedResourcesFile): Promise<void> {
+    const response = await apiClient.get(signedResourcesFile.result);
+    runInAction(() => (this.extractionResult = response.data));
+    console.log(response.data);
   }
 
 }
