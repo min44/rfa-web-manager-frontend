@@ -11,7 +11,6 @@ interface signedResourcesFile {
 }
 
 export class ForgeStore {
-
   //#region @observable
   @observable forgeAppName: string = "Fetching name...";
   @observable forgeAppNameState: IPromiseBasedObservable<void> = fromPromise(this.getforgeAppName());
@@ -25,16 +24,32 @@ export class ForgeStore {
   @observable objects: Array<object> = [{ "Fetching data...": "Loading..." }];
   @observable objectsState: IPromiseBasedObservable<void> = fromPromise(this.getObjects());
 
+  @observable allObjects: Array<object> = [{ "Fetching data...": "Loading..." }];
+  @observable allObjectsState: IPromiseBasedObservable<void> = fromPromise(this.getAllObjects());
+
   @observable appBundles: Array<object> = [{ "Fetching data...": "Loading..." }];
   @observable appBundlesState: IPromiseBasedObservable<void> = fromPromise(this.getAppBundles());
 
   @observable activities: Array<object> = [{ "Fetching data...": "Loading..." }];
-  @observable ActivitiesState: IPromiseBasedObservable<void> = fromPromise(this.getActivities());
+  @observable activitiesState: IPromiseBasedObservable<void> = fromPromise(this.getActivities());
 
-  @observable signedResourcesData: Array<object> = [];
+  @observable signedResourcesData: Array<signedResourcesFile> = [];
 
   @observable extractionResult: Array<object> = [];
+
+  @observable extractedParametersFiles: Array<object> = [];
+  @observable extractedParametersFilesState: IPromiseBasedObservable<void> = fromPromise(
+    this.getExtractedParametersFiles()
+  );
+
   //#endregion
+
+  // constructor() {
+  //   let extractionResultLocal = window.localStorage.getItem("extractionResultLocal");
+  //   extractionResultLocal
+  //     ? (this.extractionResult = JSON.parse(extractionResultLocal))
+  //     : (this.extractionResult = []);
+  // }
 
   @action.bound async createNickname(newname: string) {
     console.log("async createNickname");
@@ -54,7 +69,8 @@ export class ForgeStore {
     const response = await apiClient.post("/api/forge/dm/file/upload", data);
     runInAction(() => (this.signedResourcesData = response.data.signedResourcesData));
     this.getObjects();
-    this.getFromSingnedResources(response.data.signedResourcesData[0]);
+    this.getAllObjects() // Administratore mode for dev only
+    this.getExtractedParametersFiles();
     this.uploading = false;
   }
 
@@ -67,6 +83,7 @@ export class ForgeStore {
   @action.bound async deleteBucket(bucketKey: string) {
     console.log("async deleteBucket", bucketKey);
     await apiClient.post("/api/forge/dm/deletebucket", { bucketKey });
+    this.getAllObjects() // Administratore mode for dev only
     this.getBuckets();
   }
 
@@ -78,9 +95,20 @@ export class ForgeStore {
     );
   }
 
+  @action.bound async getAllObjects(): Promise<void> {
+    console.log("async getAllObjects");
+    await apiClient.get("/api/forge/dm/getallobjects").then(
+      (response) => {
+        runInAction(() => (this.allObjects = response.data));
+      },
+      (reject) => runInAction(() => (this.objects = [{ "Error reason": reject.response.data.statusBody.reason }]))
+    );
+  }
+
   @action.bound async deleteObject(objectKey: string) {
     console.log("async deleteObject", objectKey);
     await apiClient.post("/api/forge/dm/deleteobject", { objectKey });
+    this.getAllObjects() // Administratore mode for dev only
     this.getObjects();
   }
 
@@ -145,12 +173,13 @@ export class ForgeStore {
     await apiClient.post("/api/forge/da/createworkitem", { id });
   }
 
-  @action.bound async getFromSingnedResources(signedResourcesFile: signedResourcesFile): Promise<void> {
-    const response = await apiClient.get(signedResourcesFile.result);
-    runInAction(() => (this.extractionResult = response.data));
-    console.log(response.data);
+  @action.bound async getExtractedParametersFiles() {
+    console.log("async getExtractedParametersFiles");
+    const response = await apiClient.get("/api/forge/dm/getextractedparametersfiles");
+    runInAction(() => {
+      this.extractedParametersFiles = response.data.extractedParametersFiles;
+    });
   }
-
 }
 
 export default new ForgeStore();

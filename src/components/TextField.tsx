@@ -21,8 +21,17 @@ export function BasicTextFields(props: any) {
       <TextField
         id="outlined-basic"
         label={props.name}
+        size="small"
         variant="outlined"
-        onChange={(e) => props.onChangeHandler(e.target.value)}
+        onChange={(e) => {
+          props.onChangeHandler(e.target.value);
+        }}
+        onKeyDown={(e) => {
+          if (e.keyCode === 13) {
+            e.preventDefault();
+            props.onSubmitEventHandler();
+          }
+        }}
       />
     </form>
   );

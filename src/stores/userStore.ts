@@ -1,10 +1,18 @@
-import { observable, action } from "mobx";
+import { observable, action, computed } from "mobx";
 import apiClient from "./apiClient";
 import commonStore from "./commonStore";
 import authStore from "./authStore";
 import { IUser } from "../react-app-env";
 
 export class UserStore {
+  //#region For dev only. Correct before production
+  @observable admins: Array<string> = ["admin@bimgen.app"];
+
+  @computed get isAdmin() {
+    return this.currentUser && this.admins.includes(this.currentUser.email) ? true : false;
+  }
+  //#endregion
+
   @observable currentUser: IUser | null = null;
 
   @observable registrationValues = {

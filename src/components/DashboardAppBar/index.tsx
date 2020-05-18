@@ -60,7 +60,6 @@ const DashboardAppBar: React.FC<IDashboardAppBarProps> = ({
           edge="start"
           color="inherit"
           aria-label="open drawer"
-          onClick={handleDrawerOpen}
           className={clsx(classes.menuButton, drawerIsOpened && classes.menuButtonHidden)}
         >
           <MenuIcon />

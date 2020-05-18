@@ -14,16 +14,24 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 550,
   },
+  tableContainer: {
+    marginBottom: "25px",
+    marginTop: "10px"
+  },
 }));
 
 export const CommonTable = observer((props: any) => {
   const classes = useStyles();
 
+  if (props.filter) {props.data.forEach((item: any) => props.filter.forEach((filterCol: any) => delete item[filterCol]))}
+
   const CommonTableHead = (props: any) => {
     // const unnecessary = props.unnecessary;
     // .filter((header: string) => { return !unnecessary.includes(header) })
     const headers = props.headers;
-    return headers.map((header: string, index: number) => { return <TableCell key={index}>{header}</TableCell> });
+    return headers.map((header: string, index: number) => {
+      return <TableCell key={index}>{header}</TableCell>;
+    });
   };
 
   const CommonTableBody = (props: any) => {
@@ -49,7 +57,7 @@ export const CommonTable = observer((props: any) => {
   };
 
   return props.data.length > 0 ? (
-    <TableContainer component={Paper}>
+    <TableContainer className={classes.tableContainer} component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
@@ -63,12 +71,12 @@ export const CommonTable = observer((props: any) => {
       </Table>
     </TableContainer>
   ) : (
-    <TableContainer component={Paper}>
+    <TableContainer className={classes.tableContainer} component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>
-              <Typography>Sorry table is emty</Typography>
+            <TableCell align="center">
+              <Typography> No data </Typography>
             </TableCell>
           </TableRow>
         </TableHead>

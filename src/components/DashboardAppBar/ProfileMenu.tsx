@@ -1,5 +1,6 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
+import Security from "@material-ui/icons/Security";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
@@ -11,7 +12,7 @@ interface IProfileMenuProps extends RouteComponentProps {}
 const ProfileMenu: React.FC<IProfileMenuProps> = ({ history }: IProfileMenuProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { authStore } = useStores();
+  const { authStore, userStore } = useStores();
 
   const handleMenu = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -35,6 +36,14 @@ const ProfileMenu: React.FC<IProfileMenuProps> = ({ history }: IProfileMenuProps
 
   return (
     <div>
+      {userStore.isAdmin ? (
+        <IconButton color="inherit" component={NavLink} to="/admin">
+          <Security />
+        </IconButton>
+      ) : (
+        <div />
+      )}
+
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"

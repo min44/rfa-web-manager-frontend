@@ -4,8 +4,10 @@ import { Switch, Route } from "react-router-dom";
 import { MuiThemeProvider } from "@material-ui/core";
 import { responsiveFontSizes } from "@material-ui/core/styles";
 import PrivateRoute from "./components/PrivateRoute";
+import AdminRoute from "./components/AdminRoute";
 import { ForgeDataManagementPage } from "./pages/ForgeDataManagementPage";
 import { ForgeDesignAutomationPage } from "./pages/ForgeDesignAutomationPage";
+import { ParameterManagementPage } from "./pages/ParameterManagementPage";
 import { LoginPage } from "./pages/LoginPage";
 import { StartPage } from "./pages/StartPage";
 import { SignUpPage } from "./pages/SignUpPage";
@@ -13,11 +15,10 @@ import { UploadPage } from "./pages/UploadPage";
 import { HomePage } from "./pages/HomePage";
 import { ProfilePage } from "./pages/ProfilePage";
 import { useStores } from "./hooks/strores.hook";
-import { AdminPage } from "./pages/AdminPage";
+import { AdministratorPage } from "./pages/AdminPage";
 import { useTheme } from "./theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ButtonAppBar } from "./components/AppBar";
-
 
 export const App: React.FC = observer(() => {
   const { commonStore, authStore } = useStores();
@@ -29,17 +30,18 @@ export const App: React.FC = observer(() => {
   return appLoaded ? (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      {isAuthenticated ? <ButtonAppBar /> : <div/> }
-      <Switch>  
-        <PrivateRoute path="/upload" component={ UploadPage } />
-        <PrivateRoute path="/profile" component={ ProfilePage } />
-        <PrivateRoute path="/admin" component={ AdminPage } />
-        <PrivateRoute path="/datamanagement" component={ ForgeDataManagementPage } />
-        <PrivateRoute path="/designautomation" component={ ForgeDesignAutomationPage } />
-        <Route path="/start" component={ StartPage } />
-        <Route path="/auth/login" component={ LoginPage } />
-        <Route path="/signup" component={ SignUpPage } />
-        <PrivateRoute path="/" component={ HomePage } />
+      {isAuthenticated ? <ButtonAppBar /> : <div />}
+      <Switch>
+        <PrivateRoute path="/upload" component={UploadPage} />
+        <PrivateRoute path="/profile" component={ProfilePage} />
+        <PrivateRoute path="/datamanagement" component={ForgeDataManagementPage} />
+        <PrivateRoute path="/designautomation" component={ForgeDesignAutomationPage} />
+        <PrivateRoute path="/parametermanagement" component={ParameterManagementPage} />
+        <Route path="/start" component={StartPage} />
+        <Route path="/auth/login" component={LoginPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <AdminRoute path="/admin" component={AdministratorPage} />
+        <PrivateRoute path="/" component={HomePage} />
       </Switch>
     </MuiThemeProvider>
   ) : (

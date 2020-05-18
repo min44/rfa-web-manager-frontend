@@ -6,7 +6,6 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     title: {
       flexGrow: 1,
-      fontSize: 20,
     },
   })
 );
@@ -19,5 +18,5 @@ export const Title: React.FC = () => {
     window.location.pathname.split("/").toString().slice(2) +
     " page";
 
-  return <Typography className={classes.title}>{curentTitle}</Typography>;
+  return <Typography className={classes.title} variant="h6">{curentTitle}</Typography>;
 };
