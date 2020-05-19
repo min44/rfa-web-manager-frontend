@@ -37,17 +37,17 @@ export class ForgeStore {
     this.uploading = false;
   }
 
-  @action.bound async getObjects(): Promise<void> {
+  @action.bound async getObjects() {
     console.log("async getObjects");
     await apiClient.get("/api/forge/dm/getobjects").then(
-      (response) => runInAction(() => (this.objects = response.data.body.items)),
-      (reject) => runInAction(() => (this.objects = [{ "Error reason": reject.response.data.statusBody.reason }]))
+      (response) => runInAction(() => (this.objects = response.data.body.items))
     );
   }
 
   @action.bound async deleteObject(objectKey: string) {
     console.log("async deleteObject", objectKey);
     await apiClient.post("/api/forge/dm/deleteobject", { objectKey });
+    this.getExtractedParametersFiles();
     this.getObjects();
   }
 

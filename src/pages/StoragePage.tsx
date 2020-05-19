@@ -12,8 +12,22 @@ export const StoragePage: React.FC = observer(() => {
   return (
     <Container style={{ marginBottom: "100px" }}>
       <CssBaseline />
-      <Typography variant="h5">User objects</Typography>
-      <CommonTable data={forgeStore.objects} deleteFunction={forgeStore.deleteObject} idkey={"objectKey"} filter={["objectId", "sha1", "location"]}/>
+      <Typography variant="h5">Families</Typography>
+      <CommonTable
+        data={forgeStore.objects.filter((item: any) => item.objectKey?.includes(".rfa"))}
+        deleteFunction={forgeStore.deleteObject}
+        idkey={"objectKey"}
+        filter={["objectId", "sha1", "location"]}
+        state={forgeStore.objectsState.state}
+      />
+      <Typography variant="h5">Parameter set</Typography>
+      <CommonTable
+        data={forgeStore.objects.filter((item: any) => item.objectKey?.includes(".json"))}
+        deleteFunction={forgeStore.deleteObject}
+        idkey={"objectKey"}
+        filter={["objectId", "sha1", "location"]}
+        state={forgeStore.objectsState.state}
+      />
     </Container>
   );
 });

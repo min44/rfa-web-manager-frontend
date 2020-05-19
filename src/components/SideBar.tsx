@@ -9,8 +9,8 @@ export const mainListItems = (
     <ListItem button component={NavLink} to="/upload">
       <ListItemText primary="Upload" />
     </ListItem>
-    <ListItem button component={NavLink} to="/datamanagement">
-      <ListItemText primary="DataManagement" />
+    <ListItem button component={NavLink} to="/storage">
+      <ListItemText primary="Storage" />
     </ListItem>
     <ListItem button component={NavLink} to="/parametermanagement">
       <ListItemText primary="ParameterManagement" />

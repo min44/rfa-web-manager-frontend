@@ -40,6 +40,7 @@ export const AdministratorPage: React.FC = observer(() => {
             : adminStore.appBundlesState.state}
         </Typography>
       </div>
+      <Typography variant="h5">Common storage</Typography>
       <CommonTableCollapsible
         mainData={adminStore.buckets}
         mainDelete={adminStore.deleteBucket}
@@ -55,6 +56,7 @@ export const AdministratorPage: React.FC = observer(() => {
         deleteFunction={adminStore.deleteUser}
         idkey={"_id"}
         filter={["password", "__v"]}
+        state={adminStore.usersState.state}
       />
       <Typography variant="h5">AppBundles</Typography>
       <BasicTextFields
@@ -62,14 +64,24 @@ export const AdministratorPage: React.FC = observer(() => {
         onChangeHandler={onChangeAppBundleName}
         onSubmitEventHandler={onSubmitCreateAppBundle}
       />
-      <CommonTable data={adminStore.appBundles} deleteFunction={adminStore.deleteAppBundle} idkey={"id"} />
+      <CommonTable
+        data={adminStore.appBundles}
+        deleteFunction={adminStore.deleteAppBundle}
+        idkey={"id"}
+        state={adminStore.appBundlesState.state}
+      />
       <Typography variant="h5">Activities</Typography>
       <BasicTextFields
         name="Create activity"
         onChangeHandler={onChangeActivityName}
         onSubmitEventHandler={onSubmitCreateActivity}
       />
-      <CommonTable data={adminStore.activities} deleteFunction={adminStore.deleteActivity} idkey={"id"} />
+      <CommonTable
+        data={adminStore.activities}
+        deleteFunction={adminStore.deleteActivity}
+        idkey={"id"}
+        state={adminStore.activitiesState.state}
+      />
     </Container>
   );
 });

@@ -6,8 +6,14 @@ import { Container, Typography } from "@material-ui/core";
 import { Board } from "../components/Board";
 import { Card } from "../components/Card";
 import Loader from "../components/Loader";
+import Paper from "@material-ui/core/Paper";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: "15px",
+    margin: "100px auto",
+    maxWidth: "200px"
+  },
   flexbox: {
     display: "flex",
     justifyContent: "space-between",
@@ -32,7 +38,7 @@ const useStyles = makeStyles({
       },
     },
   },
-});
+}));
 
 export const ParameterManagementPage: React.FC = observer((props: any) => {
   const { forgeStore } = useStores();
@@ -54,13 +60,21 @@ export const ParameterManagementPage: React.FC = observer((props: any) => {
     ));
   };
 
-  return (forgeStore.extractedParametersFilesState.state === "fulfilled" ? (
-    <Container>
-      <div className={classes.flexbox}>
-        <Boards parametersJsonFiles={forgeStore.extractedParametersFiles} />
-      </div>
-    </Container>
+  return forgeStore.extractedParametersFilesState.state === "fulfilled" ? (
+    forgeStore.extractedParametersFiles.length > 0 ? (
+      <Container>
+        <div className={classes.flexbox}>
+          <Boards parametersJsonFiles={forgeStore.extractedParametersFiles} />
+        </div>
+      </Container>
+    ) : (
+      <Container>
+        <Paper className={classes.root}>
+          <Typography variant="h5" align="center">No data</Typography>
+        </Paper>
+      </Container>
+    )
   ) : (
     <Loader />
-  ))
+  );
 });
