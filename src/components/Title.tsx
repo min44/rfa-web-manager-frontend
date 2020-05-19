@@ -15,8 +15,7 @@ export const Title: React.FC = () => {
 
   const curentTitle =
     window.location.pathname.split("/").toString().charAt(1).toUpperCase() +
-    window.location.pathname.split("/").toString().slice(2) +
-    " page";
+    window.location.pathname.split("/").toString().slice(2)
 
   return <Typography className={classes.title} variant="h6">{curentTitle}</Typography>;
 };

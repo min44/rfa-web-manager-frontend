@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
-import Collapse from "@material-ui/core/Collapse";
+import { Collapse, Typography } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,7 +9,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
@@ -40,8 +39,6 @@ export const CommonTableCollapsible = observer((props: any) => {
   props.secondData.forEach((item: any) => props.secondFilter.forEach((filterCol: any) => delete item[filterCol]));
 
   const CommonTableHead = (props: any) => {
-    // const unnecessary = props.unnecessary;
-    // .filter((header: string) => { return !unnecessary.includes(header) })
     const headers = props.headers;
     return headers.map((header: string, index: number) => {
       return <TableCell key={index}>{header}</TableCell>;
@@ -59,25 +56,21 @@ export const CommonTableCollapsible = observer((props: any) => {
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
           </TableCell>
-          <TableCell>
+          <CommonTableRows cells={Object.values(props.mainRow)} />
+          <TableCell align="right">
             <IconButton aria-label="delete" onClick={() => props.mainDelete(props.mainRow[props.mainId])}>
               <DeleteIcon />
             </IconButton>
           </TableCell>
-          <CommonTableRows cells={Object.values(props.mainRow)} />
         </TableRow>
         <TableRow>
-          <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-              {props.secondData.length > 0 ? (
+          {props.secondData.filter((item: any) => item.bucketKey === props.mainRow.bucketKey).length > 0 ? (
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+              <Collapse in={open} timeout="auto" unmountOnExit>
                 <Box margin={1}>
-                  <Typography variant="h6" gutterBottom component="div">
-                    {props.secondData.bucketKey}
-                  </Typography>
                   <Table size="small" aria-label="purchases">
                     <TableHead>
                       <TableRow>
-                        <TableCell></TableCell>
                         <CommonTableHead headers={Object.keys(props.secondData[0])} />
                       </TableRow>
                     </TableHead>
@@ -92,7 +85,11 @@ export const CommonTableCollapsible = observer((props: any) => {
                     </TableBody>
                   </Table>
                 </Box>
-              ) : (
+              </Collapse>
+            </TableCell>
+          ) : (
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+              <Collapse in={open} timeout="auto" unmountOnExit>
                 <Box margin={1}>
                   <Table size="small" aria-label="purchases">
                     <TableHead>
@@ -104,24 +101,26 @@ export const CommonTableCollapsible = observer((props: any) => {
                     </TableHead>
                   </Table>
                 </Box>
-              )}
-            </Collapse>
-          </TableCell>
+              </Collapse>
+            </TableCell>
+          )}
         </TableRow>
       </React.Fragment>
     );
   };
 
   const CommonTableBodySecond = (props: any) => {
-    const handleDeleteRow = (secondId: string) => props.secondDelete(secondId);
     return props.secondData.map((secondRow: any, index: number) => (
       <TableRow key={index}>
-        <TableCell>
-          <IconButton aria-label="delete" onClick={() => handleDeleteRow(secondRow[props.secondId])}>
+        <CommonTableRows cells={Object.values(secondRow)} />
+        <TableCell align="left">
+          <IconButton
+            aria-label="delete"
+            onClick={() => props.secondDelete(secondRow.bucketKey, secondRow[props.secondId])}
+          >
             <DeleteIcon />
           </IconButton>
         </TableCell>
-        <CommonTableRows cells={Object.values(secondRow)} />
       </TableRow>
     ));
   };
@@ -135,11 +134,10 @@ export const CommonTableCollapsible = observer((props: any) => {
   };
 
   return props.mainData.length > 0 ? (
-    <TableContainer component={Paper}>
+    <TableContainer className={classes.tableContainer} component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell></TableCell>
             <TableCell></TableCell>
             <CommonTableHead headers={Object.keys(props.mainData[0])} />
           </TableRow>
@@ -161,7 +159,7 @@ export const CommonTableCollapsible = observer((props: any) => {
     </TableContainer>
   ) : (
     <TableContainer className={classes.tableContainer} component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table">
+      <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell align="center">

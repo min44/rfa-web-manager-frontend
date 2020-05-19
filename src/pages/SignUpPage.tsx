@@ -1,17 +1,18 @@
-import React from "react"
-import { observer } from "mobx-react"
-import { useHistory } from "react-router-dom"
-import { makeStyles } from "@material-ui/core/styles"
-import { Container, CssBaseline } from "@material-ui/core"
-import Avatar from "@material-ui/core/Avatar"
-import Alert from "@material-ui/lab/Alert"
-import Button from "@material-ui/core/Button"
-import TextField from "@material-ui/core/TextField"
-import Link from "@material-ui/core/Link"
-import Grid from "@material-ui/core/Grid"
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined"
-import Typography from "@material-ui/core/Typography"
-import { useStores } from "../hooks/strores.hook"
+import React from "react";
+import { observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { Container, CssBaseline } from "@material-ui/core";
+import Avatar from "@material-ui/core/Avatar";
+import Alert from "@material-ui/lab/Alert";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { useStores } from "../hooks/strores.hook";
+import Loader from "../components/Loader";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -31,41 +32,45 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
-}))
+}));
 
 export const SignUpPage: React.FC = observer(() => {
-  const history = useHistory()
-  const classes = useStyles()
-  const { userStore } = useStores()
-  const { registration, registrationValues } = userStore
-  const { errors } = registration
+  const history = useHistory();
+  const classes = useStyles();
+  const { userStore } = useStores();
+  const { registration, registrationValues } = userStore;
+  const { errors } = registration;
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    userStore.setEmail(e.target.value)
-  }
+    userStore.setEmail(e.target.value);
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    userStore.setPassword(e.target.value)
-  }
+    userStore.setPassword(e.target.value);
+  };
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    userStore.setFullName(e.target.value)
-  }
+    userStore.setFullName(e.target.value);
+  };
 
   const handleDisplayNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    userStore.setDisplayName(e.target.value)
-  }
+    userStore.setDisplayName(e.target.value);
+  };
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    userStore.resetRegistrationErrors()
-    await userStore.signUp()
+    e.preventDefault();
+    userStore.resetRegistrationErrors();
+    await userStore.signUp();
     if (userStore.currentUser !== null) {
-      history.replace("/upload")
+      history.replace("/upload");
     }
-  }
+  };
 
-  return (
+  return userStore.registration.inProgress ? (
+    <Container>
+      <Loader />
+    </Container>
+  ) : (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -77,9 +82,7 @@ export const SignUpPage: React.FC = observer(() => {
         </Typography>
         <form className={classes.form} onSubmit={handleSubmitForm} noValidate>
           <Grid container spacing={2}>
-            {errors.common.length > 0 && (
-              <Alert severity="error">{errors.common.join("\n")}</Alert>
-            )}
+            {errors.common.length > 0 && <Alert severity="error">{errors.common.join("\n")}</Alert>}
             <Grid item xs={12}>
               <TextField
                 error={errors.fullName.length !== 0}
@@ -139,7 +142,7 @@ export const SignUpPage: React.FC = observer(() => {
                 autoComplete="current-password"
               />
             </Grid>
-          </Grid> 
+          </Grid>
           <Button
             disabled={registration.inProgress}
             type="submit"
@@ -160,5 +163,5 @@ export const SignUpPage: React.FC = observer(() => {
         </form>
       </div>
     </Container>
-  )
-})
+  );
+});

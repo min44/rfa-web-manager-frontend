@@ -6,7 +6,7 @@ import { IUser } from "../react-app-env";
 
 export class UserStore {
   //#region For dev only. Correct before production
-  @observable admins: Array<string> = ["admin@bimgen.app"];
+  @observable admins: Array<string> = ["admin@bimgen.app", "smirnov@bimgen.app"];
 
   @computed get isAdmin() {
     return this.currentUser && this.admins.includes(this.currentUser.email) ? true : false;

@@ -38,12 +38,12 @@ export const CommonTable = observer((props: any) => {
     const handleDeleteRow = (_id: string) => props.deleteFunction(_id);
     return props.body.map((row: any, index: number) => (
       <TableRow key={index}>
-        <TableCell>
+        <CommonTableRows cells={Object.values(row)} />
+        <TableCell align="right">
           <IconButton aria-label="delete" onClick={() => handleDeleteRow(row[props.idkey])}>
             <DeleteIcon />
           </IconButton>
         </TableCell>
-        <CommonTableRows cells={Object.values(row)} />
       </TableRow>
     ));
   };
@@ -61,8 +61,8 @@ export const CommonTable = observer((props: any) => {
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell></TableCell>
             <CommonTableHead headers={Object.keys(props.data[0])} />
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

@@ -12,9 +12,6 @@ export const mainListItems = (
     <ListItem button component={NavLink} to="/datamanagement">
       <ListItemText primary="DataManagement" />
     </ListItem>
-    <ListItem button component={NavLink} to="/designautomation">
-      <ListItemText primary="DesignAutomation" />
-    </ListItem>
     <ListItem button component={NavLink} to="/parametermanagement">
       <ListItemText primary="ParameterManagement" />
     </ListItem>

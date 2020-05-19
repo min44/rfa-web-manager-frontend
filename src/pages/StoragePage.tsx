@@ -6,7 +6,7 @@ import { CommonTable } from "./forms/CommonTable";
 import { useStores } from "../hooks/strores.hook";
 import { observer } from "mobx-react";
 
-export const ForgeDataManagementPage: React.FC = observer(() => {
+export const StoragePage: React.FC = observer(() => {
   const { forgeStore } = useStores();
 
   return (
