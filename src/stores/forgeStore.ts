@@ -4,12 +4,6 @@ import apiClient from "./apiClient";
 
 configure({ enforceActions: "observed" });
 
-interface signedResourcesFile {
-  fileName: string;
-  rvtFile: string;
-  result: string;
-}
-
 export class ForgeStore {
   //#region @observable
   @observable files: Array<object> = [];
@@ -18,20 +12,16 @@ export class ForgeStore {
   @observable objects: Array<object> = [{ "Fetching data...": "Loading..." }];
   @observable objectsState: IPromiseBasedObservable<void> = fromPromise(this.getObjects());
 
-  @observable signedResourcesData: Array<signedResourcesFile> = [];
-
   @observable extractedParametersFiles: Array<object> = [];
   @observable extractedParametersFilesState: IPromiseBasedObservable<void> = fromPromise(
     this.getExtractedParametersFiles()
   );
   //#endregion
 
-  
   @action async uploadFile(data: object) {
     console.log("async uploadFile");
     this.uploading = true;
-    const response = await apiClient.post("/api/forge/dm/file/upload", data);
-    runInAction(() => (this.signedResourcesData = response.data.signedResourcesData));
+    await apiClient.post("/api/forge/dm/file/upload", data);
     this.getObjects();
     this.getExtractedParametersFiles();
     this.uploading = false;

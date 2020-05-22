@@ -120,7 +120,6 @@ export class AuthStore {
       });
     } catch (err) {
       runInAction(() => ( this.isAuthenticated = false));
-      console.log(err);
       if (err.response.status === 422) {
         const errors = err.response.data.errors;
         const email = errors

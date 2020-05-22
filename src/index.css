@@ -1,95 +1,95 @@
 body {
-    -webkit-font-smoothing: antialiased;
-  }
-  
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-  
-  #homePageBackground {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(to bottom,  rgba(255,255,255,0.3) 0%, rgba(20,20,10,0.7) 70%,  rgba(0,0,0,1) 100%),
-                url("./img/005.png") 50% 50% no-repeat fixed;
-    background-size: auto 110%;
-  }
-  .homePageBackgroundLogo {
-    width: 100%;
-    height: 80vh;
-    background: url("./img/BG_Background_Logo.png") 50% 50% no-repeat fixed;
-    background-size: 80%;
-    background-position-x: 40%;
-    opacity: 0.4;
-  }
-  
-  .wrapper {
-    padding-top: 5rem;
-    margin: 0 auto;
-    width: 600px;
-  }
-  
-  .rm {
-    background: red;
-    border-radius: 50%;
-    color: white;
-    border: none;
-  }
-  
-  .done {
-    text-decoration: line-through;
-  }
-  
-  .lds-dual-ring {
-    display: inline-block;
-    width: 80px;
-    height: 80px;
-    margin-right: 60px;
-  }
+  -webkit-font-smoothing: antialiased;
+}
 
-  .lds-dual-ring:after {
-    content: " ";
-    display: block;
-    width: 120px;
-    height: 120px;
-    margin: 8px;
-    border-radius: 50%;
-    border: 12px solid gray;
-    border-color: gray transparent gray transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
-  }
-  @keyframes lds-dual-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
-  .lds-dual-ring-mini {
-    display: inline-block;
-    width: 40;
-    height: 40;
-    padding: 12px;
-    
-  }
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
 
-  .lds-dual-ring-mini:after {
-    content: " ";
-    display: block;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 4px solid gray;
-    border-color: white transparent white transparent;
-    animation: lds-dual-ring 1.2s linear infinite;
+#homePageBackground {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom,  rgba(255,255,255,0.3) 0%, rgba(20,20,10,0.7) 70%,  rgba(0,0,0,1) 100%),
+              url("./img/005.png") 50% 50% no-repeat fixed;
+  background-size: auto 110%;
+}
+.homePageBackgroundLogo {
+  width: 100%;
+  height: 80vh;
+  background: url("./img/BG_Background_Logo.png") 50% 50% no-repeat fixed;
+  background-size: 80%;
+  background-position-x: 40%;
+  opacity: 0.4;
+}
+
+.wrapper {
+  padding-top: 5rem;
+  margin: 0 auto;
+  width: 600px;
+}
+
+.rm {
+  background: red;
+  border-radius: 50%;
+  color: white;
+  border: none;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  margin-right: 60px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 12px solid gray;
+  border-color: gray transparent gray transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
   }
-  @keyframes lds-dual-ring-mini {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
   }
+}
+
+.lds-dual-ring-mini {
+  display: inline-block;
+  width: 40;
+  height: 40;
+  padding: 12px;
+  
+}
+
+.lds-dual-ring-mini:after {
+  content: " ";
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 4px solid gray;
+  border-color: white transparent white transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring-mini {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

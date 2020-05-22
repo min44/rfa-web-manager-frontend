@@ -12,14 +12,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: "15px",
     margin: "100px auto",
-    maxWidth: "200px"
+    maxWidth: "200px",
   },
   flexbox: {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
     maxWidth: "1000px",
-    height: "85vh",
+    height: "100vh",
     overflow: "hidden",
     margin: "0 auto",
     padding: "15px",
@@ -46,9 +46,10 @@ export const ParameterManagementPage: React.FC = observer((props: any) => {
 
   const Boards = (props: any) => {
     return props.parametersJsonFiles.map((parametersJsonFile: any, index: number) => (
-      <Board id={`board-${index + 1}`} className="board" key={index}>
-        <Cards parametersJsonFile={parametersJsonFile} key={index} />
-      </Board>
+        <Board id={`board-${index + 1}`} className="board" key={index}>
+        <Typography variant="h6">{parametersJsonFile.objectKey.split("_extractedParameters.json")}</Typography>
+          <Cards parametersJsonFile={parametersJsonFile.parameters} key={index} />
+        </Board>
     ));
   };
 
@@ -70,7 +71,9 @@ export const ParameterManagementPage: React.FC = observer((props: any) => {
     ) : (
       <Container>
         <Paper className={classes.root}>
-          <Typography variant="h5" align="center">No data</Typography>
+          <Typography variant="h5" align="center">
+            No data
+          </Typography>
         </Paper>
       </Container>
     )
