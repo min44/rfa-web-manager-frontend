@@ -20,8 +20,8 @@ export const StartPage: React.FC = observer(() => {
   return (
     <div id="homePageBackground">
       <Container className={classes.startpage} maxWidth="sm">
-        <Typography variant="h4">Coming soon...</Typography>
-        <Link variant="body1" href="/auth/login">
+        <Typography variant="h4" style={{padding: "20px"}}>Coming soon...</Typography>
+        <Link variant="body1" href="/auth/login" >
           RFA web editor
         </Link>
       </Container>
