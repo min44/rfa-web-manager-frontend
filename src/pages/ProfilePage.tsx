@@ -9,17 +9,11 @@ export const ProfilePage: React.FC = observer(() => {
 
   return (
     <Container>
-      <Typography variant="h4">
-        Profile
-      </Typography>
-      <div>ID: { currentUser?.id }</div>
-      <div>EMAIL: { currentUser?.email }</div>
-      {/* <div>NICKNAME: { currentUser?.display_name }</div>
-      <div>FULLNAME: { currentUser?.full_name }</div> */}
-      {/* <div>CREATED: { currentUser?.created_at }</div>
-      <div>DELETED: { currentUser?.deleted_at }</div>
-      <div>LAST ACTIVITY: { currentUser?.last_activity_at }</div>
-      <div>LANGUAGE: { currentUser?.language }</div> */}
+      <Typography variant="h4">Profile</Typography>
+      {currentUser && Object.entries(currentUser).map((entry) =>
+      <Typography>
+        {entry[0]}: {entry[1]}
+      </Typography>)}
     </Container>
   );
 });

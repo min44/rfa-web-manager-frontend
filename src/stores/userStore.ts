@@ -43,6 +43,7 @@ export class UserStore {
   }
 
   @action setUser(user: IUser) {
+    console.log(user)
     this.currentUser = user;
   }
 
