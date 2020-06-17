@@ -7,7 +7,6 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { stores } from "./stores";
 
-
 ReactDOM.render(
   <Provider {...stores}>
     <BrowserRouter>
@@ -17,4 +16,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-serviceWorker.unregister()
+serviceWorker.unregister();

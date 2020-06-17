@@ -22,7 +22,7 @@ export function BasicTextFields(props: any) {
         id="outlined-basic"
         label={props.name}
         size="small"
-        variant="outlined"
+        variant="filled"
         onChange={(e) => {
           props.onChangeHandler(e.target.value);
         }}

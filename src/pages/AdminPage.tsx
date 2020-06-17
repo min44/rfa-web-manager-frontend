@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
-import { Typography, Container, CssBaseline } from "@material-ui/core";
+import { Typography, Container, CssBaseline, Box } from "@material-ui/core";
 import { useStores } from "../hooks/strores.hook";
 import { CommonTable } from "./forms/CommonTable";
 import { BasicTextFields } from "../components/TextField";
+import { ComboBox } from "../components/ComboBox";
 import { CommonTableCollapsible } from "./forms/CommonTableCollapsible";
 
 export const AdministratorPage: React.FC = observer(() => {
   const { adminStore } = useStores();
-  const [appBundleName, setAppBundleName] = useState("");
-  const [activityName, setActivityName] = useState("");
+  const [appBundleName, setAppBundleName] = useState<string>("");
+  const [activityName, setActivityName] = useState<string>("");
+  const [userSetRoleForm, setUserSetRoleForm] = useState<{ id: string; role: string }>({ id: "", role: "" });
+
+  useEffect(() => {
+    console.log(userSetRoleForm);
+  }, [userSetRoleForm]);
 
   const onChangeAppBundleName = (name: string) => {
     setAppBundleName(name);
@@ -19,12 +25,24 @@ export const AdministratorPage: React.FC = observer(() => {
     setActivityName(name);
   };
 
+  const onChangeComboBoxHandler = (id: string) => {
+    setUserSetRoleForm({ ...userSetRoleForm, id });
+  };
+
+  const onChangeBasicTextFieldHandler = (role: string) => {
+    setUserSetRoleForm({ ...userSetRoleForm, role });
+  };
+
   const onSubmitCreateAppBundle = () => {
     adminStore.createAppBundle(appBundleName);
   };
 
   const onSubmitCreateActivity = () => {
     adminStore.createActivity(activityName);
+  };
+
+  const onSubmitSetUserRole = () => {
+    adminStore.setUserRole(userSetRoleForm.id, userSetRoleForm.role);
   };
 
   return (
@@ -51,6 +69,15 @@ export const AdministratorPage: React.FC = observer(() => {
         secondFilter={["objectId", "sha1", "location"]}
       />
       <Typography variant="h5">Users</Typography>
+      <Typography variant="h6">Change user role</Typography>
+      <Box style={{ display: "flex" }}>
+        <ComboBox onChange={onChangeComboBoxHandler} data={adminStore.users} />
+        <BasicTextFields
+          name="Enter new status of user"
+          onChangeHandler={onChangeBasicTextFieldHandler}
+          onSubmitEventHandler={onSubmitSetUserRole}
+        />
+      </Box>
       <CommonTable
         data={adminStore.users}
         deleteFunction={adminStore.deleteUser}

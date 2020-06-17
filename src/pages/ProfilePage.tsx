@@ -10,10 +10,12 @@ export const ProfilePage: React.FC = observer(() => {
   return (
     <Container>
       <Typography variant="h4">Profile</Typography>
-      {currentUser && Object.entries(currentUser).map((entry) =>
-      <Typography>
-        {entry[0]}: {entry[1]}
-      </Typography>)}
+      {currentUser &&
+        Object.entries(currentUser).map((entry) => (
+          <Typography>
+            {entry[0]}: {entry[1]}
+          </Typography>
+        ))}
     </Container>
   );
 });

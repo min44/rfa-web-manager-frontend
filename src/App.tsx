@@ -28,7 +28,7 @@ export const App: React.FC = observer(() => {
   return appLoaded ? (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      {isAuthenticated ? <ButtonAppBar /> : <div />}
+      {isAuthenticated && <ButtonAppBar />}
       <Switch>
         <PrivateRoute path="/upload" component={UploadPage} />
         <PrivateRoute path="/profile" component={ProfilePage} />
@@ -42,6 +42,6 @@ export const App: React.FC = observer(() => {
       </Switch>
     </MuiThemeProvider>
   ) : (
-    <></>
+    <div />
   );
 });

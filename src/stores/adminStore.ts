@@ -1,15 +1,15 @@
 import { observable, action, runInAction, configure } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
 import apiClient from "./apiClient";
+import { IUser } from "../react-app-env";
 
 configure({ enforceActions: "observed" });
 
 export class AdminStore {
-
   @observable forgeAppName: string = "Fetching name...";
   @observable forgeAppNameState: IPromiseBasedObservable<void> = fromPromise(this.getforgeAppName());
 
-  @observable users: Array<object> = [{ "fetching users...": "Loading data..." }];
+  @observable users: IUser[] = [];
   @observable usersState: IPromiseBasedObservable<void> = fromPromise(this.getUsers());
 
   @observable allObjects: Array<object> = [{ "Fetching data...": "Loading..." }];
@@ -36,7 +36,6 @@ export class AdminStore {
     this.getforgeAppName();
   }
 
-
   @action.bound async getUsers() {
     console.log("async getUsers");
     const response = await apiClient.get("/api/users/users");
@@ -49,6 +48,12 @@ export class AdminStore {
     this.getUsers();
   }
 
+  @action.bound async setUserRole(userId: string, role: string) {
+    console.log("async setUserRole");
+    await apiClient.post("/api/users/role", { userId, role });
+    this.getUsers();
+  }
+
   @action.bound async getBuckets() {
     console.log("async getBuckets");
     const response = await apiClient.get("/api/forge/dm/getbuckets");
@@ -58,17 +63,14 @@ export class AdminStore {
   @action.bound async deleteBucket(bucketKey: string) {
     console.log("async deleteBucket", bucketKey);
     await apiClient.post("/api/forge/dm/deletebucket", { bucketKey });
-    this.getBuckets()
+    this.getBuckets();
   }
-
 
   @action.bound async getAllObjects(): Promise<void> {
     console.log("async getAllObjects");
-    await apiClient.get("/api/forge/dm/getallobjects").then(
-      (response) => {
-        runInAction(() => (this.allObjects = response.data));
-      }
-    );
+    await apiClient.get("/api/forge/dm/getallobjects").then((response) => {
+      runInAction(() => (this.allObjects = response.data));
+    });
   }
 
   @action.bound async deleteObject(bucketKey: string, objectKey: string) {
@@ -137,6 +139,5 @@ export class AdminStore {
     console.log("async createWorkItem");
     await apiClient.post("/api/forge/da/createworkitem", { id });
   }
-
 }
 export default new AdminStore();

@@ -4,19 +4,20 @@ export const useTheme = () =>
   createMuiTheme({
     typography: {
       fontFamily: [
+        'Khula',
         "-apple-system",
-        "BlinkMacSystemFont",
-        '"Segoe UI"',
-        "Roboto",
+        // "BlinkMacSystemFont",
+        // '"Segoe UI"',
+        // "Roboto",
         '"Helvetica Neue"',
-        "Arial",
+        // "Arial",
         "sans-serif",
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
+        // '"Apple Color Emoji"',
+        // '"Segoe UI Emoji"',
+        // '"Segoe UI Symbol"',
       ].join(","),
       body1: {
-        fontWeight: 300
+        fontWeight: 400
       },
       h4: {
         fontWeight: 300

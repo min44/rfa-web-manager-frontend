@@ -9,6 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileMenu from "./ProfileMenu";
+import { useStores } from "../../hooks/strores.hook";
 
 const drawerWidth = 240;
 
@@ -52,6 +53,7 @@ const DashboardAppBar: React.FC<IDashboardAppBarProps> = ({
   handleDrawerOpen,
   drawerIsOpened,
 }: IDashboardAppBarProps) => {
+  const { userStore } = useStores();
   const classes = useStyles();
   return (
     <AppBar position="absolute" className={clsx(classes.appBar, drawerIsOpened && classes.appBarShift)}>
@@ -69,6 +71,7 @@ const DashboardAppBar: React.FC<IDashboardAppBarProps> = ({
             window.location.pathname.split("/").toString().slice(2) +
             " page"}
         </Typography>
+        <div>{userStore.currentUser?.email}</div>
         <IconButton color="inherit">
           <Badge badgeContent={0} color="secondary">
             <NotificationsIcon />

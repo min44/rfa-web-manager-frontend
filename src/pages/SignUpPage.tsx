@@ -77,7 +77,7 @@ export const SignUpPage: React.FC = observer(() => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography variant="h4">
           Sign up
         </Typography>
         <form className={classes.form} onSubmit={handleSubmitForm} noValidate>

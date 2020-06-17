@@ -5,13 +5,11 @@ import authStore from "./authStore";
 import { IUser } from "../react-app-env";
 
 export class UserStore {
-  //#region For dev only. Correct before production
-  @observable admins: Array<string> = ["admin@bimgen.app", "smirnov@bimgen.app", "petrov@comfortlab.ru"];
-
   @computed get isAdmin() {
-    return this.currentUser && this.admins.includes(this.currentUser.email) ? true : false;
+    return this.currentUser && (this.currentUser.role === "admin" || this.currentUser.role === "root")
+      ? true
+      : false;
   }
-  //#endregion
 
   @observable currentUser: IUser | null = null;
 
@@ -43,7 +41,6 @@ export class UserStore {
   }
 
   @action setUser(user: IUser) {
-    console.log(user)
     this.currentUser = user;
   }
 

@@ -6,6 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { RouteComponentProps, withRouter, NavLink } from "react-router-dom";
 import { useStores } from "../../hooks/strores.hook";
+import { Typography } from "@material-ui/core";
 
 interface IProfileMenuProps extends RouteComponentProps {}
 
@@ -35,7 +36,8 @@ const ProfileMenu: React.FC<IProfileMenuProps> = ({ history }: IProfileMenuProps
   };
 
   return (
-    <div>
+    <div style={{display: "flex", alignItems: "center"}}>
+      <Typography variant="h6">{userStore.currentUser?.email}</Typography>
       {userStore.isAdmin ? (
         <IconButton color="inherit" component={NavLink} to="/admin">
           <Security />
@@ -43,7 +45,6 @@ const ProfileMenu: React.FC<IProfileMenuProps> = ({ history }: IProfileMenuProps
       ) : (
         <div />
       )}
-
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"

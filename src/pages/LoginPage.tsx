@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     marginTop: theme.spacing(1),
   },
+  textField: {
+    fontWeight: 400,
+  },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
@@ -61,11 +64,12 @@ export const LoginPage: React.FC = observer(() => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography variant="h4">
           Sign in
         </Typography>
         <form className={classes.form} onSubmit={handleSubmitForm} noValidate>
-          <TextField
+          <TextField 
+            className={classes.textField}
             error={errors.email.length !== 0}
             defaultValue={values.email}
             onChange={handleEmailChange}
