@@ -9,7 +9,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileMenu from "./ProfileMenu";
-import { useStores } from "../../hooks/strores.hook";
+import { useStores } from "../../hooks/stores.hook";
 
 const drawerWidth = 240;
 

@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import { useStores } from '../hooks/strores.hook';
+import { useStores } from '../hooks/stores.hook';
 
 
 interface IPrivateRouteProps {

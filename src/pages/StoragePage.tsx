@@ -3,7 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import { CommonTable } from "./forms/CommonTable";
-import { useStores } from "../hooks/strores.hook";
+import { useStores } from "../hooks/stores.hook";
 import { observer } from "mobx-react";
 
 export const StoragePage: React.FC = observer(() => {

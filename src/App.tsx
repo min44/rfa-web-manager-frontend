@@ -12,8 +12,9 @@ import { StartPage } from "./pages/StartPage";
 import { SignUpPage } from "./pages/SignUpPage";
 import { UploadPage } from "./pages/UploadPage";
 import { ProfilePage } from "./pages/ProfilePage";
-import { useStores } from "./hooks/strores.hook";
+import { useStores } from "./hooks/stores.hook";
 import { AdministratorPage } from "./pages/AdminPage";
+import {ParamEditorPage} from "./pages/ParamEditorPage";
 import { useTheme } from "./theme";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { ButtonAppBar } from "./components/AppBar";
@@ -34,6 +35,7 @@ export const App: React.FC = observer(() => {
         <PrivateRoute path="/profile" component={ProfilePage} />
         <PrivateRoute path="/storage" component={StoragePage} />
         <PrivateRoute path="/parametermanagement" component={ParameterManagementPage} />
+        <PrivateRoute path="/parameditor" component={ParamEditorPage} />
         <Route path="/start" component={StartPage} />
         <Route path="/auth/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />

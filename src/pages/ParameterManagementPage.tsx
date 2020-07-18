@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { useStores } from "../hooks/strores.hook";
+import { useStores } from "../hooks/stores.hook";
 import { makeStyles } from "@material-ui/core/styles";
 import { Container, Typography } from "@material-ui/core";
 import { Board } from "../components/Board";

@@ -5,7 +5,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import { RouteComponentProps, withRouter, NavLink } from "react-router-dom";
-import { useStores } from "../../hooks/strores.hook";
+import { useStores } from "../../hooks/stores.hook";
 import { Typography } from "@material-ui/core";
 
 interface IProfileMenuProps extends RouteComponentProps {}

@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Container, Typography } from "@material-ui/core";
-import { useStores } from "../hooks/strores.hook";
+import { useStores } from "../hooks/stores.hook";
 
 export const ProfilePage: React.FC = observer(() => {
   const { userStore } = useStores();

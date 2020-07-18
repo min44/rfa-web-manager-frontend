@@ -110,6 +110,7 @@ export class AdminStore {
   @action.bound async createActivity(id: string) {
     console.log("async createActivity");
     await apiClient.post("/api/forge/da/createactivity", { id });
+    console.log(this)
     this.getActivities();
   }
 

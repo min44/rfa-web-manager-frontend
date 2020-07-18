@@ -11,7 +11,7 @@ import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import { useStores } from "../hooks/strores.hook";
+import { useStores } from "../hooks/stores.hook";
 import Loader from "../components/Loader";
 
 const useStyles = makeStyles((theme) => ({

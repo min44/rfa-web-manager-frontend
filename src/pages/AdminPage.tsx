@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { observer } from "mobx-react";
 import { Typography, Container, CssBaseline, Box } from "@material-ui/core";
-import { useStores } from "../hooks/strores.hook";
+import { useStores } from "../hooks/stores.hook";
 import { CommonTable } from "./forms/CommonTable";
 import { BasicTextFields } from "../components/TextField";
 import { ComboBox } from "../components/ComboBox";

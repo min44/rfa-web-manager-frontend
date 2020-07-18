@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import SnackAlert from "../components/SnackAlert";
-import { useStores } from "../hooks/strores.hook";
+import { useStores } from "../hooks/stores.hook";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/Loader";
 import { fromPromise } from "mobx-utils";

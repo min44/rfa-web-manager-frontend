@@ -15,5 +15,8 @@ export const mainListItems = (
     <ListItem button component={NavLink} to="/parametermanagement">
       <ListItemText primary="ParameterManagement" />
     </ListItem>
+    <ListItem button component={NavLink} to="/parameditor">
+      <ListItemText primary="ParamEditor" />
+    </ListItem>
   </List>
 );
